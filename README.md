@@ -2,10 +2,10 @@
 Frustum PointNet for 3D Object Detection from Point Clouds using SYNTHIA Dataset
 
 
-## STEPS
+## Steps
 
 
-### STEP 0. Convert SYNTHIA to KITTI on server
+### Step 0. Convert SYNTHIA to KITTI on server
 
 
 0.1 . Change directory structures in ````code/new_synthia_to_kitti.py```` as follows:
@@ -36,16 +36,16 @@ python3 new_synthia_to_kitti.py
 ````
 
 
-### STEP 1. Generate train pickle locally
+### Step 1. Generate train pickle locally
 
 
 NOTE: All the following changes (for 1.) are for `local/syn_fpnet`
 
 1.1.  Copy data from server (`SynthiaReloaded/SYNTHIA_KITTI_1`) to local machine in folder syn_fpnet/dataset (and rename to KITTI) 
 
-1.2. Change (write) image_sets/train.txt to required number of training samples (script provided in `SYNTHIA_KITTI_conversion/gen_traintxt.py`) 
+1.2. Change (write) `image_sets/train.txt` to required number of training samples (script provided in `SYNTHIA_KITTI_conversion/gen_traintxt.py`) 
 
-1.3. Change script command_prep_data.sh as follows to generate only train pickle:
+1.3. Change script `command_prep_data.sh` as follows to generate only train pickle:
 ````
 python kitti/prepare_data.py --gen_train 
 ````
@@ -58,13 +58,13 @@ self.num_samples = 8088
 sh scripts/command_prep_data.sh
 ````
 
-### STEP 2. 
-2.1 Copy val pickle files from (previous work) server/new_fpnet/kitti folder to server/syn_fpnet/kitti
+### Step 2. 
+2.1 Copy val pickle files from (previous work) `server/new_fpnet/kitti` folder to `server/syn_fpnet/kitti`
 
-### STEP 3. Train on server
+### Step 3. Train on server
 
 3.1. Open screen in server
-3.2. Make the following changes for GPU number to scripts/command_train_v1.sh:
+3.2. Make the following changes for GPU number to `scripts/command_train_v1.sh`:
 ````
 python train/train.py --gpu 4 --model frustum_pointnets_v1 --log_dir train/log_v1 --num_point 1024 --max_epoch 201 --batch_size 32 --decay_step 800000 --decay_rate 0.5
 ````
